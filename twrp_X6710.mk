@@ -12,13 +12,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-# Inherit from X6710 device
-$(call inherit-product, device/infinix/X6710/device.mk)
+# Inherit from CK8n device
+$(call inherit-product, device/tecno/CK8n/device.mk)
 
-PRODUCT_DEVICE := X6710
-PRODUCT_NAME := twrp_X6710
-PRODUCT_BRAND := infinix
-PRODUCT_MODEL := Infinix Note 30 VIP
-PRODUCT_MANUFACTURER := infinix
+PRODUCT_DEVICE := CK8n
+PRODUCT_NAME := twrp_CK8n
+PRODUCT_BRAND := tecno
+PRODUCT_MODEL := tecno Note 30 VIP
+PRODUCT_MANUFACTURER := tecno
 
-PRODUCT_GMS_CLIENTID_BASE := android-infinix
+PRODUCT_GMS_CLIENTID_BASE := android-tecno

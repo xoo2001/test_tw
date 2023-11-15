@@ -1,8 +1,8 @@
 # Custom Recovery Tree
 
-Build your own custom recovery (TWRP) for Infinix Note 30 VIP (aka Infinix-X6710 or just X6710).
+Build your own custom recovery (TWRP) for Tecno Camon 20 Pro 5G (aka TECNO-CK8n or just CK8n).
 
-![Infinix Note 30 VIP](https://fdn2.gsmarena.com/vv/pics/infinix/infinix-x6710-note-30-vip-3.jpg)
+![Tecno Camon 20 Pro 5G](https://fdn2.gsmarena.com/vv/pics/tecno/tecno-camon20-pro-5g-2.jpg)
 
 |Basic               |Spec Sheet                                                    |
 |--                  |--                                                            |
