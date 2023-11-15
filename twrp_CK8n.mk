@@ -18,7 +18,7 @@ $(call inherit-product, device/tecno/CK8n/device.mk)
 PRODUCT_DEVICE := CK8n
 PRODUCT_NAME := twrp_CK8n
 PRODUCT_BRAND := tecno
-PRODUCT_MODEL := tecno Note 30 VIP
-PRODUCT_MANUFACTURER := tecno
+PRODUCT_MODEL := Tecno Camon 20 Pro 5G
+PRODUCT_MANUFACTURER := TECNO
 
 PRODUCT_GMS_CLIENTID_BASE := android-tecno
