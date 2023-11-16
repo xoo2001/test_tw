@@ -156,4 +156,4 @@ TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
 # Version
-TW_DEVICE_VERSION := cd-Crypton
+include $(DEVICE_PATH)/version.mk
