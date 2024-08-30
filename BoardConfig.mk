@@ -18,9 +18,9 @@ AB_OTA_PARTITIONS += \
     product \
     system_ext \
     boot \
+    vendor_boot \
     vbmeta_vendor \
     vbmeta_system
-BOARD_USES_RECOVERY_AS_BOOT := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -40,6 +40,28 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 # Assert
 TARGET_OTA_ASSERT_DEVICE := TECNO-CK8n
 
+# Board Boot Header
+# Switch to version 3 since A14 update, moving recovery resources to vendor_boot
+BOARD_BOOT_HEADER_VERSION := 3
+
+# Board Default Values
+# Switch to --vendor_cmdline since header v3
+BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2
+# From 2048, switch to 4096 since header v3
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_BASE := 0x40078000
+BOARD_KERNEL_OFFSET := 0x00008000
+BOARD_RAMDISK_OFFSET := 0x11088000
+BOARD_TAGS_OFFSET := 0x07c08000
+BOARD_DTB_OFFSET := 0x07c08000
+BOARD_MKBOOTIMG_ARGS += --vendor_cmdline $(BOARD_VENDOR_CMDLINE)
+BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_PAGE_SIZE) --board ""
+BOARD_MKBOOTIMG_ARGS += --kernel_offset $(BOARD_KERNEL_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_TAGS_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
+
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := TECNO-CK8n
 TARGET_NO_BOOTLOADER := true
@@ -57,36 +79,25 @@ TW_PREPARE_DATA_MEDIA_EARLY := true
 # Display
 TARGET_SCREEN_DENSITY := 480
 
-# Kernel
-BOARD_BOOTIMG_HEADER_VERSION := 2
-BOARD_KERNEL_BASE := 0x40078000
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
-BOARD_KERNEL_PAGESIZE := 2048
-BOARD_RAMDISK_OFFSET := 0x11088000
-BOARD_KERNEL_TAGS_OFFSET := 0x07c08000
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
-BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
-BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-TARGET_KERNEL_CONFIG := CK8n_defconfig
-TARGET_KERNEL_SOURCE := kernel/tecno/CK8n
-
-# Kernel - prebuilt
-TARGET_FORCE_PREBUILT_KERNEL := true
-ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
+# DTB - prebuilt
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
-BOARD_INCLUDE_DTB_IN_BOOTIMG := 
-endif
+
+# Kernel
+TARGET_NO_KERNEL := true
+BOARD_KERNEL_IMAGE_NAME := Image
+TARGET_KERNEL_CONFIG := CK8n_defconfig
+TARGET_KERNEL_SOURCE := kernel/tecno/CK8n
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 
 # Partitions
-BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
+# (BOARD_PAGE_SIZE * 64)
+BOARD_FLASH_BLOCK_SIZE := 262144
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
+# Define vendor_boot image size, as we will be moving recovery resource to it
+BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := $(BOARD_BOOTIMAGE_PARTITION_SIZE)
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_SYSTEMIMAGE_PARTITION_TYPE := erofs
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
@@ -101,12 +112,17 @@ BOARD_TECNO_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 TARGET_BOARD_PLATFORM := mt6893
 
 # Recovery
+TARGET_NO_RECOVERY := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
 TARGET_USES_MKE2FS := true
+
+# Recovery - Ramdisk
+# Since moving recovery resources to vendor_boot, ramdisk compression type became lz4-l from gzip
+BOARD_RAMDISK_USE_LZ4 := true
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
@@ -154,6 +170,12 @@ TW_HAS_MTP := true
 # Debug
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
+
+# Vendor Boot
+# Making sure recovery build don't have kernel in it--well, no kernel at all in tree anyway... LOL!
+BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
+# We are now moving to vendor_boot, hmmm, wait, really?
+BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 
 # Version
 TW_DEVICE_VERSION := A14-CD_0001
