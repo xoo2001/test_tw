@@ -156,4 +156,4 @@ TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
 # Version
-include $(DEVICE_PATH)/version.mk
+TW_DEVICE_VERSION := A14-CD_0001
