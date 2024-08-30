@@ -188,6 +188,11 @@ BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 # We are now moving to vendor_boot, hmmm, wait, really?
 BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 
+# Vendor Modules
+TW_LOAD_VENDOR_MODULES := true
+TW_LOAD_VENDOR_BOOT_MODULES := true
+TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
+
 # Workaround for copy_out error
 TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_SYSTEM_DLKM := system_dlkm
