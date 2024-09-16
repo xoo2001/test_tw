@@ -19,12 +19,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/userspace_reboot.mk)
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Inherit from CK8n device
-$(call inherit-product, device/tecno/CK8n/device.mk)
+$(call inherit-product, device/infinix/X6739/device.mk)
 
-PRODUCT_DEVICE := CK8n
-PRODUCT_NAME := twrp_CK8n
-PRODUCT_BRAND := tecno
-PRODUCT_MODEL := Tecno Camon 20 Pro 5G
-PRODUCT_MANUFACTURER := TECNO
+PRODUCT_DEVICE := X6739
+PRODUCT_NAME := twrp_X6739
+PRODUCT_BRAND := infinix
+PRODUCT_MODEL := Infinix GT Pro 5G
+PRODUCT_MANUFACTURER := INFINIX
 
-PRODUCT_GMS_CLIENTID_BASE := android-tecno
+PRODUCT_GMS_CLIENTID_BASE := android-infinix

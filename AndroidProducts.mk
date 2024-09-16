@@ -6,9 +6,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_CK8n.mk
+    $(LOCAL_DIR)/twrp_X6739.mk
 
 COMMON_LUNCH_CHOICES := \
-    twrp_CK8n-user \
-    twrp_CK8n-userdebug \
-    twrp_CK8n-eng
+    twrp_X6739-user \
+    twrp_X6739-userdebug \
+    twrp_X6739-eng

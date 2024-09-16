@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/tecno/CK8n
+DEVICE_PATH := device/infinix/X6739
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -38,7 +38,7 @@ TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := TECNO-CK8n
+TARGET_OTA_ASSERT_DEVICE := Infinix-X6739
 
 # Board Boot Header
 # Switch to version 3 since A14 update, moving recovery resources to vendor_boot
@@ -67,7 +67,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_USES_SYSTEM_DLKMIMAGE := true
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := CK8n
+TARGET_BOOTLOADER_BOARD_NAME := X6739
 TARGET_NO_BOOTLOADER := true
 TARGET_USES_UEFI := true
 
@@ -98,8 +98,8 @@ TARGET_NO_KERNEL := true
 BOARD_KERNEL_IMAGE_NAME := Image
 
 # Kernel - source
-TARGET_KERNEL_CONFIG := CK8n_defconfig
-TARGET_KERNEL_SOURCE := kernel/tecno/CK8n
+TARGET_KERNEL_CONFIG := X6739_defconfig
+TARGET_KERNEL_SOURCE := kernel/infinix/X6739
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
@@ -200,4 +200,4 @@ TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 
 # Version
-TW_DEVICE_VERSION := A14-CD_0001
+TW_DEVICE_VERSION := A14-xoo2001

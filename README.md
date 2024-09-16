@@ -1,8 +1,8 @@
 # Custom Recovery Tree
 
-Build your own custom recovery (TWRP) for Tecno Camon 20 Pro 5G (aka TECNO-CK8n or just CK8n).
+Build your own custom recovery (TWRP) for Infinix GT 10 Pro 5G (aka Infinix-X6739 or just X6739).
 
-![Tecno Camon 20 Pro 5G](https://fdn2.gsmarena.com/vv/pics/tecno/tecno-camon20-pro-5g-2.jpg)
+![Infinix GT Pro 5G](https://fdn2.gsmarena.com/vv/pics/infinix/infinix-gt-10-pro-1.jpg)
 
 |Basic               |Spec Sheet                                                    |
 |--                  |--                                                            |
